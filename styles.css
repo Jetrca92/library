@@ -48,6 +48,18 @@ body {
     line-height: 1.2;
 }
 
+.input {
+    width: 90%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.is-read {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
 p {
     margin: 0px;
 }
