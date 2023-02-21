@@ -1,4 +1,4 @@
-let myLibraty = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -6,6 +6,15 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.info = function () {
-        console.log(`${title} by ${author}, ${pages} pages, ${read} yet`);
+        console.log(`${title} by ${author}, ${pages} pages, ${read ? 'read' : 'not read'} yet`);
     }
+}
+
+function addBook() {
+    const title = prompt('Title');
+    const author = prompt('Author');
+    const pages = prompt('Pages');
+    const read = confirm('Read? OK for yes, Cancel for NO');
+    const book = new Book(title, author, pages, read);
+    myLibrary.push(book);
 }
