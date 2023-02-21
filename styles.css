@@ -48,16 +48,26 @@ body {
     line-height: 1.2;
 }
 
-.btn:hover {
-    filter: brightness(90%);
-}
-
-.btn-light-green {
-    background-color: greenyellow;
+p {
+    margin: 0px;
 }
 
 .btn {
     padding: 10px;
     border-radius: 8px;
     transition: filter 0.15s ease-in-out;
+    font-size: 20px;
+}
+
+.btn-add {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.btn:hover {
+    filter: brightness(90%);
+}
+
+.btn-light-green {
+    background-color: greenyellow;
 }
