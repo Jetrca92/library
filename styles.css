@@ -83,3 +83,9 @@ p {
 .btn-light-green {
     background-color: greenyellow;
 }
+
+#form {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}

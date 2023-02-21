@@ -18,3 +18,11 @@ function addBook() {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
+
+document.querySelector('#addBook').addEventListener('click', () => {
+    const card = document.querySelector('#form');
+    card.style.display = 'flex';
+    setTimeout(() => {
+        card.style.opacity = 1;
+      }, 0);
+});
