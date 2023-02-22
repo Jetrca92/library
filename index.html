@@ -16,22 +16,24 @@
     <main class="main container">
         <button class="btn btn-add" id="addBook">+ Add book</button>
         <div class="books-grid" id="booksGrid">
-            <div id="book-form" class="book-card">
-                <input class="input" type="text" id="title" placeholder="Title" required="" maxlength="60">
-                <input class="input" type="text" id="author" placeholder="Author" required="" maxlength="60">
-                <input class="input" type="number" id="pages" placeholder="Pages" required="" maxlength="60">
-                <div class="is-read">
-                    <label for="is-read">Have you read it?</label>
-                    <input class="checkbox" type="checkbox" id="isRead">
-                </div>
-                <button class="btn btn-light-green" type="submit" id="formSubmitBtn">Submit</button>
+            <div class="book-card" id="book-form">
+                <form id="form">
+                    <input class="input" type="text" id="title" placeholder="Title" required="" maxlength="60">
+                    <input class="input" type="text" id="author" placeholder="Author" required="" maxlength="60">
+                    <input class="input" type="number" id="pages" placeholder="Pages" required="" maxlength="60">
+                    <div class="is-read">
+                        <label for="is-read">Have you read it?</label>
+                        <input class="checkbox" type="checkbox" id="isRead">
+                    </div>
+                    <input class="btn btn-light-green" type="submit" id="formSubmitBtn">
+                </form>
             </div>
-            <div class="book-card">
-                <p>"The Hobbit"</p>
+            <div class="book-card" data-title="The Hobbit">
+                <p>The Hobbit</p>
                 <p>J. R. R. Tolkien</p>
                 <p>123 pages</p>
-                <button class="btn btn-light-green">Read</button>
-                <button class="btn" id="rmvBtn">Remove</button>
+                <button class="btn btn-light-green readBtn">Read</button>
+                <button class="btn rmvBtn">Remove</button>
             </div>
         </div>
     </main>

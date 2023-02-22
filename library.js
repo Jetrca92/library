@@ -10,19 +10,23 @@ function Book(title, author, pages, read) {
     this.info = function () {
         console.log(`${title} by ${author}, ${pages} pages, ${read ? 'read' : 'not read yet'}`);
     }
+    this.pushNewBook = function() {
+        myLibrary.push(this);
+    }
 }
 
 // Adds book to array
 function addBook() {
-    const title = document.querySelector('#title');
-    const author = document.querySelector('#author');
-    const pages = document.querySelector('#pages');
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const pages = document.querySelector('#pages').value;
     const read = document.querySelector('#isRead').checked;
     const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
+    book.pushNewBook();
+    createBookCard(book);
 }
 
-// Displays all books in cars
+// Displays all books in cards
 function createBookCard(book) {
 
     // Create elements and set class, innerHTML
@@ -34,10 +38,11 @@ function createBookCard(book) {
     const removeBtn = document.createElement('button');
 
     div.setAttribute('class', 'book-card');
+    div.setAttribute('data-title', `${book.title}`);
     readBtn.setAttribute('class', 'btn');
     removeBtn.setAttribute('class', 'btn');
     readBtn.onclick = toggleRead;
-    removeBtn.onclick = removeBook;
+    //removeBtn.onclick = removeBook;
 
     pTitle.innerHTML = book.title;
     pAuthor.innerHTML = book.author;
@@ -45,10 +50,10 @@ function createBookCard(book) {
     removeBtn.innerHTML = "Remove";
 
     if (book.read) {
-        readBtn.classList.add('btn-light-green');
+        readBtn.classList.add('btn-light-green', 'readBtn');
         readBtn.innerHTML = "Read";
     } else {
-        readBtn.classList.add('btn-light-red');
+        readBtn.classList.add('btn-light-red', 'readBtn');
         readBtn.innerHTML = "Not read";
     }
 
@@ -58,37 +63,60 @@ function createBookCard(book) {
     div.appendChild(readBtn);
     div.appendChild(removeBtn);
 
-    
-    
-    
-    
-    
-
-
-    <div class="book-card">
-                <p>"The Hobbit"</p>
-                <p>J. R. R. Tolkien</p>
-                <p>123 pages</p>
-                <button class="btn btn-light-green">Read</button>
-                <button class="btn" id="rmvBtn">Remove</button>
-            </div>
+    const booksGrid = document.querySelector('#booksGrid');
+    booksGrid.appendChild(div);
 }
 
 // Form for add book appears onclick
 document.querySelector('#addBook').addEventListener('click', () => {
-    const card = document.querySelector('#form');
+    const card = document.querySelector('#book-form');
     card.style.display = 'flex';
     setTimeout(() => {
         card.style.opacity = 1;
       }, 0);
 });
 
-document.querySelector('#book-form').addEventListener('submit', (event) => {
+document.querySelector('#form').addEventListener('submit', (event) => {
     event.preventDefault(); // prevent load
 
     // and then do your stuff
     addBook();
+    document.querySelector('#title').value = "";
+    document.querySelector('#author').value = "";
+    document.querySelector('#pages').value = "";
+    document.querySelector('#isRead').checked = false;
     return false;
+});
 
-  });
+const toggleRead = (e) => {
+    const title = e.target.parentNode.firstChild.innerHTML;
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].title === title) {
+            myLibrary[i].read != myLibrary[i].read;
+            const read = myLibrary[i].read;
+            updateBookCard(title, read);
+        }
+    }
+}
+
+function updateBookCard(title, read) {
+    // Find the book with the matching title
+    const book = myLibrary.find((book) => book.title === title);
+  
+    // Update the read status of the book
+    book.read = read;
+  
+    // Find the corresponding book card and update it
+    const bookCard = document.querySelector(`[data-title="${book.title}"]`);
+    const readBtn = bookCard.querySelector('.readBtn');
+    if (read) {
+        readBtn.classList.remove('btn-light-red');
+        readBtn.classList.add('btn-light-green');
+        readBtn.innerHTML = "Read";
+    } else {
+        readBtn.classList.remove('btn-light-green');
+        readBtn.classList.add('btn-light-red');
+        readBtn.innerHTML = "Not read";
+    }
+}
 
