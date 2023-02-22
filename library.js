@@ -23,18 +23,46 @@ function addBook() {
 }
 
 // Displays all books in cars
-function displayBooks(myLibrary) {
+function createBookCard(book) {
 
     // Create elements and set class, innerHTML
     const div = document.createElement('div');
-    div.setAttribute('class', 'book-card');
     const pTitle = document.createElement('p');
     const pAuthor = document.createElement('p');
     const pPages = document.createElement('p');
     const readBtn = document.createElement('button');
-    readBtn.setAttribute('class', 'btn btn-light-green');
     const removeBtn = document.createElement('button');
+
+    div.setAttribute('class', 'book-card');
+    readBtn.setAttribute('class', 'btn');
     removeBtn.setAttribute('class', 'btn');
+    readBtn.onclick = toggleRead;
+    removeBtn.onclick = removeBook;
+
+    pTitle.innerHTML = book.title;
+    pAuthor.innerHTML = book.author;
+    pPages.innerHTML = `${book.pages} pages`;
+    removeBtn.innerHTML = "Remove";
+
+    if (book.read) {
+        readBtn.classList.add('btn-light-green');
+        readBtn.innerHTML = "Read";
+    } else {
+        readBtn.classList.add('btn-light-red');
+        readBtn.innerHTML = "Not read";
+    }
+
+    div.appendChild(pTitle);
+    div.appendChild(pAuthor);
+    div.appendChild(pPages);
+    div.appendChild(readBtn);
+    div.appendChild(removeBtn);
+
+    
+    
+    
+    
+    
 
 
     <div class="book-card">
