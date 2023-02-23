@@ -92,7 +92,18 @@ const toggleRead = (e) => {
     const title = e.target.parentNode.firstChild.innerHTML;
     for (let i = 0; i < myLibrary.length; i++) {
         if (myLibrary[i].title === title) {
-            myLibrary[i].read != myLibrary[i].read;
+            myLibrary[i].read = !myLibrary[i].read;
+            const read = myLibrary[i].read;
+            updateBookCard(title, read);
+        }
+    }
+}
+
+const toggleRead = (e) => {
+    const title = e.target.parentNode.firstChild.innerHTML;
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].title === title) {
+            myLibrary[i].read = !myLibrary[i].read;
             const read = myLibrary[i].read;
             updateBookCard(title, read);
         }
@@ -110,13 +121,13 @@ function updateBookCard(title, read) {
     const bookCard = document.querySelector(`[data-title="${book.title}"]`);
     const readBtn = bookCard.querySelector('.readBtn');
     if (read) {
-        readBtn.classList.remove('btn-light-red');
-        readBtn.classList.add('btn-light-green');
-        readBtn.innerHTML = "Read";
-    } else {
         readBtn.classList.remove('btn-light-green');
         readBtn.classList.add('btn-light-red');
         readBtn.innerHTML = "Not read";
+    } else {
+        readBtn.classList.remove('btn-light-red');
+        readBtn.classList.add('btn-light-green');
+        readBtn.innerHTML = "Read";
     }
 }
 
