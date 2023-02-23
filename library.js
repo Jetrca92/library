@@ -42,13 +42,14 @@ function createBookCard(book) {
     readBtn.setAttribute('class', 'btn');
     removeBtn.setAttribute('class', 'btn');
     readBtn.onclick = toggleRead;
-    //removeBtn.onclick = removeBook;
+    removeBtn.onclick = removeBook;
 
     pTitle.innerHTML = book.title;
     pAuthor.innerHTML = book.author;
     pPages.innerHTML = `${book.pages} pages`;
     removeBtn.innerHTML = "Remove";
 
+    // Add css for read property
     if (book.read) {
         readBtn.classList.add('btn-light-green', 'readBtn');
         readBtn.innerHTML = "Read";
@@ -85,6 +86,7 @@ document.querySelector('#form').addEventListener('submit', (event) => {
     document.querySelector('#author').value = "";
     document.querySelector('#pages').value = "";
     document.querySelector('#isRead').checked = false;
+    document.querySelector('#book-form').style.display = 'none';
     return false;
 });
 
@@ -99,15 +101,9 @@ const toggleRead = (e) => {
     }
 }
 
-const toggleRead = (e) => {
-    const title = e.target.parentNode.firstChild.innerHTML;
-    for (let i = 0; i < myLibrary.length; i++) {
-        if (myLibrary[i].title === title) {
-            myLibrary[i].read = !myLibrary[i].read;
-            const read = myLibrary[i].read;
-            updateBookCard(title, read);
-        }
-    }
+const removeBook = (e) => {
+    const bookDiv = e.target.parentNode;
+    bookDiv.remove();
 }
 
 function updateBookCard(title, read) {
@@ -121,13 +117,13 @@ function updateBookCard(title, read) {
     const bookCard = document.querySelector(`[data-title="${book.title}"]`);
     const readBtn = bookCard.querySelector('.readBtn');
     if (read) {
-        readBtn.classList.remove('btn-light-green');
-        readBtn.classList.add('btn-light-red');
-        readBtn.innerHTML = "Not read";
-    } else {
         readBtn.classList.remove('btn-light-red');
         readBtn.classList.add('btn-light-green');
         readBtn.innerHTML = "Read";
+    } else {
+        readBtn.classList.remove('btn-light-green');
+        readBtn.classList.add('btn-light-red');
+        readBtn.innerHTML = "Not read";
     }
 }
 
