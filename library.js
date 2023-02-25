@@ -1,16 +1,18 @@
 // Array for storing books
 let myLibrary = [];
 
-// Book constructor
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function () {
+// Book class
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+    info() {
         console.log(`${title} by ${author}, ${pages} pages, ${read ? 'read' : 'not read yet'}`);
     }
-    this.pushNewBook = function() {
+    pushNewBook() {
         myLibrary.push(this);
     }
 }
